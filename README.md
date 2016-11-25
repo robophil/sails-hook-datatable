@@ -2,7 +2,9 @@
 A sails hook for working with Jquery datatables. 
 
 ### Install
+```bash
 npm i sails-hook-datatable --save
+```
 
 ### Support
 This hook supports jquery DataTables 1.10+. If your working with a legacy version, see https://datatables.net/manual/server-side#Legacy for congiuration.
@@ -35,5 +37,9 @@ $('#example').DataTable( {
     ]
 }
 ```
+### Issues or Missing implementation
+Create an issue to mention a bug or feature request. Fixed something? Send a PR
 
+### Liscence
+MIT
 
