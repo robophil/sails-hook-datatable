@@ -6,9 +6,9 @@ module.exports.getData = function (model, options) {
   var MODEL = sails.models[model];
 
   //if model dosen't exist
-  if(!MODEL){
-    return new Promise((resolve, reject)=>{
-      reject({error: `Model: ${model} dosen't exist.`});
+  if (!MODEL) {
+    return new Promise((resolve, reject) => {
+      reject({ error: `Model: ${model} dosen't exist.` });
     })
   }
 
@@ -56,7 +56,7 @@ module.exports.getData = function (model, options) {
   });
 
   //find the databased on the query and total items in the database; data[0] and data[1] repectively
-  Promise.all([MODEL.find({
+  return Promise.all([MODEL.find({
     where: { or: where },
     select: select,
     skip: +_options.start,

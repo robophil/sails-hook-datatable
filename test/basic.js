@@ -44,4 +44,12 @@ var Sails = require('sails').Sails;
          return true;
      });
 
+     it ('service is loaded', function(){
+         if(sails.services['datatableservice']){
+             return true;
+         }else{
+             return false;
+         }
+     })
+
  });
