@@ -10,7 +10,7 @@ var Sails = require('sails').Sails;
      before(function (done) {
 
          // Hook will timeout in 10 seconds
-         this.timeout(11000);
+         this.timeout(15000);
 
          // Attempt to lift sails
          Sails().lift({
