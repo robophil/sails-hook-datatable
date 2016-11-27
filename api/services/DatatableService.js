@@ -75,15 +75,6 @@ module.exports.getData = function (model, options) {
   } else {
     whereQuery = {}
   }
-  _options.columns.forEach((column, index) => {
-    if (column.searchable) {
-      var filter = {}
-      filter[ATTR[index]] = {
-        'contains': _options.search.value
-      }
-      where.push(filter)
-    }
-  })
 
 
 
