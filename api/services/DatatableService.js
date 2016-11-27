@@ -13,8 +13,7 @@ module.exports.getData = function (model, options) {
   }
 
   var ATTR = Object.keys(MODEL._attributes)
-  delete ATTR.id
-  
+
   //possible column options as default
   var _columns = [{ data: '', name: '', searchable: false, orderable: false, search: { value: '' } }]
 
@@ -42,7 +41,40 @@ module.exports.getData = function (model, options) {
   }
 
   //build where criteria
-  var where = []
+  var where = [], whereQuery = { or: [] }, select = []
+
+  if (_options.columns.length) {
+    if (_options.columns[0].data == 0) {//type array
+      /**
+       * sails never responds with an array of literals or primitives like [["boy","foo"], ["girl","bar"]]
+       * do set your column.data attribute from your datatable config
+       */
+    } else {//type Object
+      _options.columns.forEach((column, index) => {
+        if (column.searchable) {
+          if (column.data.indexOf('.') > -1) {//accesing object attribute for value
+            var col = column.data.substr(0, column.data.indexOf('.'))
+            var filter = {}
+            filter[col] = {
+              'contains': _options.search.value
+            }
+            select.push(col)
+            where.push(filter)
+          } else {
+            var filter = {}
+            filter[column.data] = {
+              'contains': _options.search.value
+            }
+            select.push(column.data)
+            where.push(filter)
+          }
+        }
+      })
+    }
+    whereQuery = { or : where }
+  } else {
+    whereQuery = {}
+  }
   _options.columns.forEach((column, index) => {
     if (column.searchable) {
       var filter = {}
@@ -53,9 +85,12 @@ module.exports.getData = function (model, options) {
     }
   })
 
+
+
   //find the databased on the query and total items in the database data[0] and data[1] repectively
   return Promise.all([MODEL.find({
-    where: { or: where },
+    where: whereQuery,
+    select: select,
     skip: +_options.start,
     limit: +_options.length,
     sort: _options.columns[+_options.order[0].column].data + ' ' + _options.order[0].dir.toUpperCase()

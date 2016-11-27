@@ -37,6 +37,14 @@ $('#example').DataTable( {
     ]
 }
 ```
+
+To view attributes in a model, send a `GET` to `/datatable/column-names/:model` to fetch the attributes for that model. See response below
+```javascript
+{ columns: [
+    'id', 'firstname', 'lastname'
+]}
+```
+
 ### Issues or Missing implementation
 Create an issue to mention a bug or feature request. Fixed something? Send a PR
 
