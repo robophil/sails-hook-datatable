@@ -1,6 +1,6 @@
 {
   "name": "sails-hook-datatable",
-  "version": "1.0.4",
+  "version": "1.0.2",
   "description": "A sails hook for working with jquery datatable",
   "main": "index.js",
   "scripts": {
