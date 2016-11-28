@@ -12,8 +12,8 @@ This hook supports jquery DataTables 1.10+. If your working with a legacy versio
 ### Usage
 Send a `GET` or `POST` to `/datatable/:model` to use
 
-**NOTE:** Always set `column.data` as showing in example below as sails.js Always respond with an array of object `[{"name":"foo"}, {"name":"bar"}]]` not literals like
-`[["boy","foo"], ["girl","bar"]]`. You can also set `column.data = country.state.city` where `country` is the table name. This would be handle well by both this hook and datatable.
+**NOTE:** Always set `column.data` as showing in example below as `sails.js` Always respond with an array of object `[{"name":"foo"}, {"name":"bar"}]]` not literals like
+`[["boy","foo"], ["girl","bar"]]`. You can also set `column.data = country.state.city` where `country` is the column name. This would be handle well by both this hook and datatable.
 
 ```javascript
 //Example where *account* is the model name
