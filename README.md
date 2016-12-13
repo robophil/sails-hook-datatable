@@ -59,3 +59,13 @@ Create an issue to mention a bug or feature request. Fixed something? Send a PR
 ### Liscence
 MIT
 
+
+### Fixes
+Removed sails-dictionary.
+Made blueprint action datatables available on every model.
+Corrected child check for dotted attribute of the data column with nexted child in request.
+Added populate to the model request so that it's children are also available and can be used by dot notation in datatable.
+Made request search by column with default search value.
+Restricted the endpoints to respond to just get & post verbs only.
+Changed response from res.json to res.ok so you can determine what format you want your response from your headers.
+Ability to filter by range on any column using the value of search as object {from:##,to:##}
